@@ -1,0 +1,32 @@
+You start with a Unity project with a standard script that allows for dragging and dropping of list items to other lists. 
+
+There's a Main.unity scene in Assets/Scenes that contains five lists that are all drop zones for ListEntry objects.
+
+
+
+Please modify the project to implement the following rules for drag and drop. Feel free to add or modify code, the scene, as well as the prefabs if necessary.
+
+
+
+- there are two types of lists: Main lists (Media, Contacts) and Quick Access lists (Shortcuts, Playlist, Trash)
+
+- only Songs can be dropped into Playlist. Moving songs to the playlist creates a shortcut to the song in the playlist
+
+- songs and contacts can be dropped from anywhere into shortcuts, creating shortcuts
+
+- when shortcuts are created, the original item remains in the list it was dragged from
+
+- dragging an item from Media or Contacts to the "Trash" will remove the item and all shortcuts to it
+
+- There shall be no duplicate items in any of the lists, except the playlist (we might want to listen to the same song twice)
+
+- dragging an item from a Quick access list into the trash will remove the (1) shortcut in that list, but not the original item in the Media or contacts list
+
+- BONUS: dragging a song onto a contact will print "Shared song (song name) with contact (contact name) in the console
+
+
+
+Please try to be as efficient as possible. Please wrap up your investigation after two to three hours and document your changes (ideally, send a git repository with change history).
+
+
+Good luck!
