@@ -293,7 +293,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1238836990352302, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
       propertyPath: m_Name
-      value: Shortcut
+      value: Shortcuts
       objectReference: {fileID: 0}
     - target: {fileID: 114548798005467374, guid: c983112bc973aae4fb2a19d8b086e190,
         type: 2}
@@ -301,6 +301,10 @@ Prefab:
       value: 'Shortcut
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361773582405552, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
+      propertyPath: m_Name
+      value: ShortcutList
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
@@ -433,6 +437,10 @@ Prefab:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 1361773582405552, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
+      propertyPath: m_Name
+      value: PlaylistList
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
   m_IsPrefabAsset: 0
@@ -441,6 +449,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224949097369889784, guid: c983112bc973aae4fb2a19d8b086e190,
     type: 2}
   m_PrefabInternal: {fileID: 461819819}
+--- !u!114 &536694925 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114469319286368858, guid: c983112bc973aae4fb2a19d8b086e190,
+    type: 2}
+  m_PrefabInternal: {fileID: 1990836409}
+  m_Script: {fileID: 11500000, guid: af5d1d21ee311ed438b98d6853616e50, type: 3}
 --- !u!1 &615593961
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +637,10 @@ Prefab:
       propertyPath: m_Text
       value: Contacts
       objectReference: {fileID: 0}
+    - target: {fileID: 1361773582405552, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
+      propertyPath: m_Name
+      value: ContactsList
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
   m_IsPrefabAsset: 0
@@ -631,6 +649,71 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224949097369889784, guid: c983112bc973aae4fb2a19d8b086e190,
     type: 2}
   m_PrefabInternal: {fileID: 829145752}
+--- !u!1 &1062522293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062522295}
+  - component: {fileID: 1062522294}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1062522294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062522293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e246f4fabb483644aaf7020d111dc9ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listItemPrefab: {fileID: 1540494001166666, guid: 5f722d6a84e5af441a017ad2f9cfcb9a,
+    type: 2}
+  music: {fileID: 536694925}
+  shortcuts: {fileID: 1425588258}
+  playlists: {fileID: 1395177883}
+  trash: {fileID: 1550322066}
+  contacts: {fileID: 1933673699}
+--- !u!4 &1062522295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062522293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 360.94003, y: 257.7074, z: 8.144702}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1395177883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114469319286368858, guid: c983112bc973aae4fb2a19d8b086e190,
+    type: 2}
+  m_PrefabInternal: {fileID: 461819819}
+  m_Script: {fileID: 11500000, guid: af5d1d21ee311ed438b98d6853616e50, type: 3}
+--- !u!114 &1425588258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114469319286368858, guid: c983112bc973aae4fb2a19d8b086e190,
+    type: 2}
+  m_PrefabInternal: {fileID: 359295881}
+  m_Script: {fileID: 11500000, guid: af5d1d21ee311ed438b98d6853616e50, type: 3}
+--- !u!114 &1550322066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114469319286368858, guid: c983112bc973aae4fb2a19d8b086e190,
+    type: 2}
+  m_PrefabInternal: {fileID: 1953757513}
+  m_Script: {fileID: 11500000, guid: af5d1d21ee311ed438b98d6853616e50, type: 3}
 --- !u!1 &1646425731
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +870,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1933673699 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114469319286368858, guid: c983112bc973aae4fb2a19d8b086e190,
+    type: 2}
+  m_PrefabInternal: {fileID: 829145752}
+  m_Script: {fileID: 11500000, guid: af5d1d21ee311ed438b98d6853616e50, type: 3}
 --- !u!1001 &1953757513
 Prefab:
   m_ObjectHideFlags: 0
@@ -908,6 +997,10 @@ Prefab:
       propertyPath: m_Text
       value: Trash
       objectReference: {fileID: 0}
+    - target: {fileID: 1361773582405552, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
+      propertyPath: m_Name
+      value: TrashList
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
   m_IsPrefabAsset: 0
@@ -1017,10 +1110,9 @@ Prefab:
       propertyPath: m_Name
       value: Music
       objectReference: {fileID: 0}
-    - target: {fileID: 114581998865807062, guid: c983112bc973aae4fb2a19d8b086e190,
-        type: 2}
-      propertyPath: m_ChildControlWidth
-      value: 1
+    - target: {fileID: 1361773582405552, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}
+      propertyPath: m_Name
+      value: MusicList
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c983112bc973aae4fb2a19d8b086e190, type: 2}

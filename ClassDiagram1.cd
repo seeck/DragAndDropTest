@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="MODEL">
+    <Position X="2.656" Y="0.542" Height="0.375" Width="0.835" />
+  </Comment>
+  <Comment CommentText="VIEW">
+    <Position X="7.5" Y="0.646" Height="0.375" Width="0.835" />
+  </Comment>
+  <Comment CommentText="CONTROLLER">
+    <Position X="12.042" Y="0.625" Height="0.375" Width="1.263" />
+  </Comment>
+  <Class Name="ListItem">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABBAAAAEAAAAAAAAAAAAABAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\ListItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Draggable" Collapsed="true">
+    <Position X="6" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAkgAEAAAAAAABAEAAAAAAAAKAAgAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Draggable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DropList">
+    <Position X="7.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAABAAAAAACAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\UI\DropList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DropZone" Collapsed="true">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAAAAQAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\DropZone.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UserData">
+    <Position X="3.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\UserData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ListItemData">
+    <Position X="1.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Data\ListItemData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ListManager">
+    <Position X="11.25" Y="1.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>IgkAAAQAAQABAAEAAAAEAAgAQAAAABCAABAAAAAAEEA=</HashCode>
+      <FileName>Assets\Scripts\Manager\ListManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

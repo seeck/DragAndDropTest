@@ -4,8 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Derived from DropZone
+/// Added logic to easily add/remove items from the list.
+/// </summary>
 public class DropList : DropZone
 {
+    /// <summary>
+    /// Removes all items from a list that satisfy a particular comparator
+    /// </summary>
+    /// <param name="condition">Condition evaluated for removal</param>
     public void RemoveItems(Func<ListItemData,bool> condition)
     {
         List<ListItem> removeThese = new List<ListItem>();
@@ -23,7 +31,12 @@ public class DropList : DropZone
         }
         removeThese.Clear();
     }
-
+    /// <summary>
+    /// Adds item to the end of the list.
+    /// </summary>
+    /// <param name="data">Data for the prefab</param>
+    /// <param name="prefab">The prefab to be populated.</param>
+    /// <returns></returns>
     public ListItem AddItem(ListItemData data, GameObject prefab)
     {
         GameObject instance = Instantiate(prefab);
@@ -36,6 +49,13 @@ public class DropList : DropZone
         return lI;
     }
 
+    /// <summary>
+    /// Add item at a given sibling index.
+    /// </summary>
+    /// <param name="data"></param>
+    /// <param name="prefab"></param>
+    /// <param name="siblingIndex"></param>
+    /// <returns></returns>
     public ListItem AddItemAtIndex(ListItemData data, GameObject prefab, int siblingIndex)
     {
         ListItem lI = AddItem(data, prefab);
@@ -43,9 +63,13 @@ public class DropList : DropZone
         return lI;
     }
 
+    /// <summary>
+    /// Check if the list contains a particular data Item.
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
     public bool Contains(ListItemData data)
     {
-        //Rethink how to do the contains operation.
         if(data == null)
         {
             return false;

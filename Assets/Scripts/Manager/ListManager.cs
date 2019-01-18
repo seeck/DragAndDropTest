@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The manager class that populates all the list and manages their behavior.
+/// </summary>
 public class ListManager : MonoBehaviour {
     [SerializeField]
     GameObject listItemPrefab;
@@ -25,13 +28,16 @@ public class ListManager : MonoBehaviour {
    
     void Awake()
     {
+        //Set up the model
         userData = new UserData();
         userData.ParseContacts(contactData);
         userData.ParseSongs(songData);
 
-        ParseData(music, userData.Songs, listItemPrefab, null);
-        ParseData(contacts, userData.Contacts, listItemPrefab, OnSongDroppedOnContact);
+        //Populate the lists.
+        PopulateList(music, userData.Songs, listItemPrefab, null);
+        PopulateList(contacts, userData.Contacts, listItemPrefab, OnSongDroppedOnContact);
 
+        //Set up the delegates.
         music.OnItemDropped += IgnoreDrop;
         contacts.OnItemDropped += IgnoreDrop;
         shortcuts.OnItemDropped += DroppedOnShortcut;
@@ -39,7 +45,8 @@ public class ListManager : MonoBehaviour {
         trash.OnItemDropped += DroppedOnTrash;
     }
 
-    void ParseData(DropList targetList, List<ListItemData> data, GameObject prefab, Action<Draggable,Draggable> OnDraggableDropped)
+    //Pass user data into the list and instantiate UI elements.
+    void PopulateList(DropList targetList, List<ListItemData> data, GameObject prefab, Action<Draggable,Draggable> OnDraggableDropped)
     {
         foreach(ListItemData datum in data)
         {
@@ -49,7 +56,7 @@ public class ListManager : MonoBehaviour {
         }
     }
     
-
+    //For ignoring items dropped on music/contacts.
     void IgnoreDrop(DropZone dropZone, Draggable draggable)
     {
         if(draggable!=null)
@@ -58,6 +65,7 @@ public class ListManager : MonoBehaviour {
         }
     }
 
+    //Shortcut creates a copy of the dropped item, then returns it to the original location.
     void DroppedOnShortcut(DropZone dropZone, Draggable draggable)
     {
         DropList dropList = dropZone as DropList;
@@ -66,6 +74,7 @@ public class ListManager : MonoBehaviour {
         {
             return;
         }
+
         if (!dropList.Contains(listItem.Data))
         {
             ListItem shortcut = dropList.AddItemAtIndex(
@@ -79,6 +88,7 @@ public class ListManager : MonoBehaviour {
         draggable.newSiblingIndex = draggable.originalSiblingIndex;
     }
 
+    //Playlist only allows songs to be added. Duplicates are allowed.
     void DroppedOnPlaylist(DropZone dropZone, Draggable draggable)
     {
         DropList dropList = dropZone as DropList;
@@ -100,27 +110,36 @@ public class ListManager : MonoBehaviour {
         draggable.newSiblingIndex = draggable.originalSiblingIndex;
     }
 
+    //Trash deletes one reference or all references depending on the item.
     void DroppedOnTrash(DropZone dropZone, Draggable draggable)
     {
         ListItem listItem = draggable as ListItem;
         ListItemData listItemData = listItem.Data;
         if(!listItem.IsShortcut)
         {
-            shortcuts.RemoveItems((data) => { return data == listItemData; });
-            music.RemoveItems((data) => { return data == listItemData; });
-            playlists.RemoveItems((data) => { return data == listItemData; });
-            contacts.RemoveItems((data) => { return data == listItemData; });
+            Func<ListItemData, bool> condition = (data) => { return data == listItemData; };
+            shortcuts.RemoveItems(condition);
+            if (listItem.Data.DataType == ItemDataType.Music)
+            {
+                music.RemoveItems(condition);
+                playlists.RemoveItems(condition);
+            }
+            if (listItem.Data.DataType == ItemDataType.Contacts)
+            {
+                contacts.RemoveItems(condition);
+            }
         }
         Destroy(listItem.gameObject);
     }
 
+    //BONUS condition: Dropping song on contact.
     void OnSongDroppedOnContact(Draggable song, Draggable contact)
     {
         ListItem songItem = song as ListItem;
         ListItem contactItem = contact as ListItem;
         if (songItem != null && contactItem != null)
         {
-            Debug.Log("Dropped " + songItem.Data.Name + " on " + contactItem.Data.Name);
+            Debug.Log("Shared song " + songItem.Data.Name + " with contact " + contactItem.Data.Name);
         }
     } 
 }

@@ -10,13 +10,16 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Transform parentToReturnTo;
     [HideInInspector]
     public Transform placeHolderParent;
+    [HideInInspector]
     public int newSiblingIndex;
-
+    [HideInInspector]
     public Transform originalParent;
+    [HideInInspector]
     public int originalSiblingIndex;
     
     private GameObject placeHolder;
 
+    //Added event to detect sharing of song with contact.
     public Action<Draggable, Draggable> OnDraggableDropped;
 
     public void OnBeginDrag(PointerEventData eventData) {
@@ -74,6 +77,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Destroy(placeHolder);
     }
 
+    //Added to check for song dropped on contact.
     public void OnDrop(PointerEventData eventData)
     {
         if(eventData.pointerDrag!=null)

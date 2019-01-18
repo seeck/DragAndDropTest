@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.EventSystems;
 using System;
-using System.Collections.Generic;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler {
 
+    //Action for when an item is dropped on to a list.
+    //Used to manage custom behavior of every list.
     public Action<DropZone, Draggable> OnItemDropped;
     
     public void OnPointerEnter(PointerEventData eventData) {
