@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ListManager : MonoBehaviour {
@@ -7,14 +8,12 @@ public class ListManager : MonoBehaviour {
 
     [SerializeField]
     DropList music;
-    
     [SerializeField]
     DropList shortcuts;
     [SerializeField]
     DropList playlists;
     [SerializeField]
     DropList trash;
-
     [SerializeField]
     DropList contacts;
 
@@ -30,8 +29,8 @@ public class ListManager : MonoBehaviour {
         userData.ParseContacts(contactData);
         userData.ParseSongs(songData);
 
-        ParseData(music, userData.Songs, listItemPrefab);
-        ParseData(contacts, userData.Contacts, listItemPrefab);
+        ParseData(music, userData.Songs, listItemPrefab, null);
+        ParseData(contacts, userData.Contacts, listItemPrefab, OnSongDroppedOnContact);
 
         music.OnItemDropped += IgnoreDrop;
         contacts.OnItemDropped += IgnoreDrop;
@@ -40,11 +39,12 @@ public class ListManager : MonoBehaviour {
         trash.OnItemDropped += DroppedOnTrash;
     }
 
-    void ParseData(DropList targetList, List<ListItemData> data, GameObject prefab)
+    void ParseData(DropList targetList, List<ListItemData> data, GameObject prefab, Action<Draggable,Draggable> OnDraggableDropped)
     {
         foreach(ListItemData datum in data)
         {
             ListItem lI = targetList.AddItem(datum, prefab);
+            lI.OnDraggableDropped += OnDraggableDropped;
             lI.IsShortcut = false;
         }
     }
@@ -113,4 +113,14 @@ public class ListManager : MonoBehaviour {
         }
         Destroy(listItem.gameObject);
     }
+
+    void OnSongDroppedOnContact(Draggable song, Draggable contact)
+    {
+        ListItem songItem = song as ListItem;
+        ListItem contactItem = contact as ListItem;
+        if (songItem != null && contactItem != null)
+        {
+            Debug.Log("Dropped " + songItem.Data.Name + " on " + contactItem.Data.Name);
+        }
+    } 
 }

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
-public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler {
 
+    
     [HideInInspector]
     public Transform parentToReturnTo;
     [HideInInspector]
@@ -14,7 +16,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public int originalSiblingIndex;
     
     private GameObject placeHolder;
-    
+
+    public Action<Draggable, Draggable> OnDraggableDropped;
 
     public void OnBeginDrag(PointerEventData eventData) {
         originalParent = transform.parent;
@@ -69,5 +72,15 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         transform.SetSiblingIndex(newSiblingIndex);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         Destroy(placeHolder);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if(eventData.pointerDrag!=null)
+        {
+            Draggable d1 = eventData.pointerDrag.GetComponent<Draggable>();
+            OnDraggableDropped.SafeInvoke(d1, this);
+        }
+
     }
 }

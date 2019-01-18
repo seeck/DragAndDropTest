@@ -32,6 +32,7 @@ public class DropList : DropZone
         lI.transform.SetParent(transform);
         lI.transform.localScale = Vector3.one;
         lI.transform.SetAsLastSibling();
+        lI.name = data.Name;
         return lI;
     }
 
