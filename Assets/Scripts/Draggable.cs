@@ -8,12 +8,20 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Transform parentToReturnTo;
     [HideInInspector]
     public Transform placeHolderParent;
+    public int newSiblingIndex;
 
+    public Transform originalParent;
+    public int originalSiblingIndex;
+    
     private GameObject placeHolder;
+    
 
     public void OnBeginDrag(PointerEventData eventData) {
+        originalParent = transform.parent;
+        originalSiblingIndex = transform.GetSiblingIndex();
+
         placeHolder = new GameObject();
-        placeHolder.transform.SetParent(transform.parent );
+        placeHolder.transform.SetParent(transform.parent);
         LayoutElement le = placeHolder.AddComponent<LayoutElement>();
         le.preferredWidth = GetComponent<LayoutElement>().preferredWidth;
         le.preferredHeight = GetComponent<LayoutElement>().preferredHeight;
@@ -53,11 +61,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
 
         placeHolder.transform.SetSiblingIndex(newSiblingIndex);
+        this.newSiblingIndex = newSiblingIndex;
     }
 
     public void OnEndDrag(PointerEventData eventData) {
         transform.SetParent(parentToReturnTo);
-        transform.SetSiblingIndex(placeHolder.transform.GetSiblingIndex());
+        transform.SetSiblingIndex(newSiblingIndex);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         Destroy(placeHolder);
     }
